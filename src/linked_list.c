@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "linked_list.h"
 
-typedef struct{
-    void* next;
-    int data;
-} Node;
 
 Node* head = NULL;
 

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "linked_list.h"
 
 int main(){
@@ -12,6 +13,9 @@ int main(){
     removeNode(42);
     show_list();
     removeNode(8);
+    show_list();
+    struct Node* added = add(99);
+    printf("added->data: %d\n", added->data);
     show_list();
     return 0;
 }
