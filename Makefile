@@ -26,6 +26,10 @@ obj/linked_list.o: src/linked_list.c
 
 test: tests/bin/test_linked_list
 	@echo "Start test_linked_list"
+	./tests/bin/test_linked_list2
+
+test-v: tests/bin/test_linked_list
+	@echo "Start test_linked_list"
 	./tests/bin/test_linked_list2 --verbose
 
 tests/bin/test_linked_list: obj/linked_list.o obj/test_linked_list2.o
@@ -46,3 +50,5 @@ clean:
 	@echo "Delete data in bin, obj and tests/bin directories"
 	rm -r bin/* obj/* tests/bin/*
 
+start:
+	./bin/main
