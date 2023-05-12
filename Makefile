@@ -9,13 +9,13 @@ TESTBINS=$(pathsubst $(TEST)/%.c, $(TEST)/bin/%, $(TESTS))
 
 all: bin/main
 
-bin/main: obj/test_linked_list.o obj/linked_list.o
+bin/main: obj/main.o obj/linked_list.o
 	@echo "Linking and producing the final application"
-	gcc -w -o bin/main obj/test_linked_list.o obj/linked_list.o
+	gcc -w -o bin/main obj/main.o obj/linked_list.o
 
-obj/test_linked_list.o: src/test_linked_list.c
-	@echo "Compiling test_linked_list"
-	gcc -w -c src/test_linked_list.c -o obj/test_linked_list.o
+obj/main.o: src/main.c
+	@echo "Compiling main"
+	gcc -w -c src/main.c -o obj/main.o
 
 obj/linked_list.o: src/linked_list.c
 	@echo "Compiling linked_list"
@@ -24,21 +24,21 @@ obj/linked_list.o: src/linked_list.c
 
 # test
 
-test: tests/bin/test_linked_list
-	@echo "Start test_linked_list"
-	./tests/bin/test_linked_list2
+test: tests/bin/main
+	@echo "Test linked list"
+	./tests/bin/test_linked_list
 
-test-v: tests/bin/test_linked_list
-	@echo "Start test_linked_list"
-	./tests/bin/test_linked_list2 --verbose
+test-v: tests/bin/main
+	@echo "Test linked list (verbose)"
+	./tests/bin/test_linked_list --verbose
 
-tests/bin/test_linked_list: obj/linked_list.o obj/test_linked_list2.o
+tests/bin/main: obj/linked_list.o obj/test_linked_list.o
 	@echo "Linking and producing the test for linked_list"
-	gcc obj/linked_list.o obj/test_linked_list2.o -o tests/bin/test_linked_list2 -lcriterion
+	gcc obj/linked_list.o obj/test_linked_list.o -o tests/bin/test_linked_list -lcriterion
 
-obj/test_linked_list2.o: tests/test_linked_list2.c
-	@echo "Compiling test_linked_list2"
-	gcc -c tests/test_linked_list2.c -o obj/test_linked_list2.o  
+obj/test_linked_list.o: tests/test_linked_list.c
+	@echo "Compiling test_linked_list"
+	gcc -c tests/test_linked_list.c -o obj/test_linked_list.o  
 
 $(TEST)/bin:
 	mkdir $@
