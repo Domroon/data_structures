@@ -7,6 +7,7 @@ void process_user_input(){
         printf("2 - Show the whole List\n");
         printf("3 - Insert a new Node\n");
         printf("4 - Delete a Node\n");
+        printf("5 - Save List on Harddrive\n");
         char option;
         int user_input;
         scanf(" %c", &option);
@@ -31,6 +32,16 @@ void process_user_input(){
                 printf("Enter Number you want to remove: \n");
                 scanf("%d", &user_input);
                 removeNode(user_input);
+                break;
+            case '5':
+                int list = save_list();
+                if (list == 0){
+                    printf("List sucessfully saved\n");
+                } else if (list == -1) {
+                    printf("You can not store an empty list\n");
+                } else if (list == -2) {
+                    printf("Folder or File not found ./data/test.txt \n");
+                }
                 break;
             default:
                 printf("Wrong Input. Please try again.\n\n");

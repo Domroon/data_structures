@@ -89,3 +89,19 @@ void show_list(){
     }
     printf("\n");
 }
+
+
+int save_list() {
+    if (head == NULL) return -1;
+
+    FILE *fp;
+    fp = fopen("./data/test.txt", "w");
+    if (fp == NULL) return -2;
+    
+    Node* current = head;
+    while(current != NULL){
+        fprintf(fp, "%d,", current->data);
+        current = current->next;
+    }
+    fclose(fp);    
+}
