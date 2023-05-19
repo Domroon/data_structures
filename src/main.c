@@ -43,7 +43,10 @@ void process_user_input(){
             case '4':
                 printf("Enter Number you want to remove: \n");
                 scanf("%d", &user_input);
-                removeNode(user_input);
+                Node* removed;
+                removed = removeNode(user_input);
+                if (removed == -1)
+                    printf("Can not find an Element with this data: %d\n", user_input);
                 break;
             case '5':
                 int list = save_list();

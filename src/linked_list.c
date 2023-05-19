@@ -73,7 +73,8 @@ Node* removeNode(int data){
         current = current->next;
         before = before->next;
     }
-    printf("Can not find an Element with this data: %d\n", data);
+
+    return -1;
 }
 
 void show_list(){

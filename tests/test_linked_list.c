@@ -51,6 +51,25 @@ Test(insert, successfully_inserted){
 
 
 //removeNode
+Test(removeNode, successfully_removed){
+    Node* added = add(43);
+    add(41);
+    add(42);
+    add(43);
+    add(44);
+    Node* del = removeNode(42);
+    cr_expect(del == NULL, "Should return NULL");  
+}
+
+Test(removeNode, node_not_found){
+    Node* added = add(43);
+    add(41);
+    add(42);
+    add(43);
+    add(44);
+    Node* del = removeNode(45);
+    cr_expect(del == -1, "Should return -1");  
+}
 
 
 // show_list
