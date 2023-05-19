@@ -44,7 +44,6 @@ Node* insert(int data, int nodeData){
         }
         current = current->next;
     }
-    printf("Can not find a Node with the data: %d\n", nodeData);
     return NULL;
 }
 

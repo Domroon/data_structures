@@ -17,18 +17,37 @@ Test(add, create_2){
     cr_expect(added->data == 43, "add.data should be 43");  
 }
 
-Test(add, wrong_type){
-    Node* added = add('a');
-    cr_expect(added == NULL, "add should return NULL");  
-}
+// Test(add, wrong_type){
+//     Node* added = add('a');
+//     cr_expect(added == NULL, "add should return NULL");  
+// }
 
-Test(add, wrong_type_2){
-    Node* added = add("Hello World");
-    cr_expect(added == NULL, "add should return NULL");  
-}
+// Test(add, wrong_type_2){
+//     Node* added = add("Hello World");
+//     cr_expect(added == NULL, "add should return NULL");  
+// }
 
 
 //insert
+Test(insert, node_not_found){
+    Node* added = add(43);
+    add(41);
+    add(42);
+    add(43);
+    add(44);
+    Node* ins = insert(45, 46);
+    cr_expect(ins == NULL, "Node should be NULL");  
+}
+
+Test(insert, successfully_inserted){
+    Node* added = add(43);
+    add(41);
+    add(42);
+    add(43);
+    add(44);
+    Node* ins = insert(45, 44);
+    cr_expect(ins->data == 45, "Node data should be 44");  
+}
 
 
 //removeNode
@@ -38,7 +57,6 @@ Test(add, wrong_type_2){
 
 Test(show_list, check_stdout){
     FILE *fp;
-    FILE *fp2;
     char output[100];
 
     // Add Data

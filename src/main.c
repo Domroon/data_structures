@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <ctype.h>
 #include "linked_list.h"
 
 void process_user_input(){
@@ -14,8 +17,15 @@ void process_user_input(){
         switch(option){
             case '1':
                 printf("Enter Number you want to add: \n");
-                scanf("%d", &user_input);
+                int result;
+                printf("Number: ");
+                result = scanf("%d", &user_input);
+                if (result == 0) {
+                    printf("Not a number\n");
+                    break;
+                }
                 add(user_input);
+                scanf("%*[^\n]");
                 break;
             case '2':
                 show_list();
@@ -26,7 +36,9 @@ void process_user_input(){
                 int nodeData;
                 printf("Enter the Data of the Node, where you want to insert your node after: \n");
                 scanf("%d", &nodeData);
-                insert(user_input, nodeData);
+                Node* ins = insert(user_input, nodeData);
+                if (ins == NULL) 
+                    printf("Can not find a Node with the data: %d\n", nodeData);
                 break;
             case '4':
                 printf("Enter Number you want to remove: \n");
