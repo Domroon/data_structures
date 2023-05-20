@@ -11,6 +11,7 @@ void process_user_input(){
         printf("3 - Insert a new Node\n");
         printf("4 - Delete a Node\n");
         printf("5 - Save List on Harddrive\n");
+        printf("6 - Load List from Harddrive\n");
         char option;
         int user_input;
         scanf(" %c", &option);
@@ -57,6 +58,9 @@ void process_user_input(){
                 } else if (list == -2) {
                     printf("Folder or File not found ./data/test.txt \n");
                 }
+                break;
+            case '6':
+                load_list();
                 break;
             default:
                 printf("Wrong Input. Please try again.\n\n");

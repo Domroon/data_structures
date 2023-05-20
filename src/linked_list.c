@@ -95,13 +95,30 @@ int save_list() {
     if (head == NULL) return -1;
 
     FILE *fp;
-    fp = fopen("./data/test.txt", "w");
+    fp = fopen("./data/linked_list.txt", "w");
     if (fp == NULL) return -2;
     
     Node* current = head;
     while(current != NULL){
-        fprintf(fp, "%d,", current->data);
+        fprintf(fp, "%d\n", current->data);
         current = current->next;
     }
     fclose(fp);    
+}
+
+
+int load_list() {
+    FILE *fp;
+    fp = fopen("./data/linked_list.txt", "r");
+    char line[100];
+    while(!feof(fp)){
+        line[0] = NULL;
+        fgets(line, 100, fp);
+        if (line == NULL) break;
+        char *output;
+        int num = strtol(line, &output, 10);
+        printf("%d\n", num);
+        add(num);
+    }
+    fclose(fp);
 }
