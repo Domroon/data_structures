@@ -71,11 +71,15 @@ void process_linked_list(){
 }
 
 void dictAdd(char key[], char value[], Dict* dict) {
+
     Item* item = addItem(key, value, dict);
-    printf("\n");
-    printf("key:%s\n", item->key);
-    printf("value:%s\n", item->value);
-    printf("dict->firstitem: %d\n", dict->firstItem);
+    if (item == NULL) {
+        printf("Key already taken. Item is not added.\n");
+    }
+    // printf("\n");
+    // printf("key:%s\n", item->key);
+    // printf("value:%s\n", item->value);
+    // printf("dict->firstitem: %d\n", dict->firstItem);
 }
 
 void process_dict() {
@@ -103,6 +107,7 @@ void process_dict() {
             case '3':
                 break;
             case '4':
+                showAllItems(dict);
                 break;
         }
     }

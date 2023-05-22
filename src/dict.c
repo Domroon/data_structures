@@ -11,14 +11,18 @@ Item* addItem(char key[], char value[], Dict* dict) {
     if (item == NULL)
         return NULL;
 
-    printf("success generated item\n");
     if (dict->firstItem == NULL) {
         dict->firstItem = item;
-        printf("firstItem is null\n");
         item->next = NULL;
         strcpy(item->key, key);
         strcpy(item->value, value);
     } else {
+        // check whether key is already assigned
+        Item* keyCheck = getItem(key, dict);
+        if (keyCheck != NULL) {
+            return NULL;
+        }
+
         item->next = dict->firstItem;
         strcpy(item->key, key);
         strcpy(item->value, value);
@@ -32,6 +36,23 @@ bool removeItem(char key[], Dict* dict) {
 }
 
 Item* getItem(char key[], Dict* dict) {
-    Item* firstItem = dict->firstItem;
-    return firstItem;
+    Item* current = dict->firstItem;
+    while (current !=NULL) {
+        if (strcmp(current->key, key) == 0){
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
+
+void showAllItems(Dict* dict) {
+    Item* current = dict->firstItem;
+    printf("{");
+    while (current !=NULL) {
+        printf("\"%s\": %s, ", current->key, current->value);
+
+        current = current->next;
+    }
+    printf("}\n");
 }
