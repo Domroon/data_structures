@@ -10,9 +10,9 @@ TESTBINS=$(pathsubst $(TEST)/%.c, $(TEST)/bin/%, $(TESTS))
 
 all: bin/main
 
-bin/main: obj/main.o obj/linked_list.o
+bin/main: obj/main.o obj/linked_list.o obj/dict.o
 	@echo "Linking and producing the final application"
-	gcc -w -o bin/main obj/main.o obj/linked_list.o
+	gcc -w -o bin/main obj/main.o obj/linked_list.o obj/dict.o
 
 obj/main.o: src/main.c
 	@echo "Compiling main"
@@ -21,6 +21,10 @@ obj/main.o: src/main.c
 obj/linked_list.o: src/linked_list.c
 	@echo "Compiling linked_list"
 	gcc -w -c src/linked_list.c -o obj/linked_list.o
+
+obj/dict.o: src/dict.c
+	@echo "Compiling dict"
+	gcc -w -c src/dict.c -o obj/dict.o
 
 
 # debug
@@ -33,9 +37,15 @@ obj/linked_list-debug.o: src/linked_list.c
 	@echo "Compiling linked_list-debug"
 	gcc -w -o obj/linked_list-debug.o -c src/linked_list.c -g
 
-debug: obj/main-debug.o obj/linked_list-debug.o
+obj/dict-debug.o: src/dict.c
+	@echo "Compiling dict-debug"
+	gcc -w -o obj/dict-debug.o -c src/dict.c
+
+debug: obj/main-debug.o obj/linked_list-debug.o obj/dict-debug.o
 	@echo "Linking and producing the final application with debug information"
-	gcc -o bin/main-debug obj/main-debug.o obj/linked_list-debug.o -g
+	gcc -o bin/main-debug obj/main-debug.o obj/linked_list-debug.o obj/dict-debug.o -g
+
+
 
 
 # test

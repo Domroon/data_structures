@@ -3,8 +3,9 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include "linked_list.h"
+#include "dict.h"
 
-void process_user_input(){
+void process_linked_list(){
     while (1){
         printf("1 - Add new Node\n");
         printf("2 - Show the whole List\n");
@@ -69,8 +70,65 @@ void process_user_input(){
     }
 }
 
+void dictAdd(char key[], char value[], Dict* dict) {
+    Item* item = addItem(key, value, dict);
+    printf("\n");
+    printf("key:%s\n", item->key);
+    printf("value:%s\n", item->value);
+    printf("dict->firstitem: %d\n", dict->firstItem);
+}
+
+void process_dict() {
+    printf("1 - add\n");
+    printf("2 - remove\n");
+    printf("3 - get\n");
+    printf("4 - show\n");
+
+    Dict* dict = malloc(sizeof(Dict));
+    char option;
+    while (1) {
+        scanf("%c", &option);
+        switch(option) {
+            case '1':
+                char key[20];                
+                char value[250];
+                printf("key:");
+                scanf("%s", &key);
+                printf("value:");
+                scanf("%s", &value);
+                dictAdd(key, value, dict);
+                break;
+            case '2':
+                break;
+            case '3':
+                break;
+            case '4':
+                break;
+        }
+    }
+    
+}
+
+
 int main(){
-    process_user_input();
+    printf("1 - linked list\n");
+    printf("2 - dict\n");
+    printf("3 - Insert a new Node\n");
+    char option;
+    while (1) {
+        scanf("%c", &option);
+        switch (option) {
+            case '1':
+                process_linked_list();
+                break;
+            case '2':
+                process_dict();
+                break;
+            default:
+                printf("Wrong Input. Please try again.\n\n");
+                break;
+            }
+    }
     return 0;
 }
 
