@@ -39,7 +39,7 @@ obj/linked_list-debug.o: src/linked_list.c
 
 obj/dict-debug.o: src/dict.c
 	@echo "Compiling dict-debug"
-	gcc -w -o obj/dict-debug.o -c src/dict.c
+	gcc -w -o obj/dict-debug.o -c src/dict.c -g
 
 debug: obj/main-debug.o obj/linked_list-debug.o obj/dict-debug.o
 	@echo "Linking and producing the final application with debug information"
