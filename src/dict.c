@@ -28,10 +28,36 @@ Item* addItem(char key[], char value[], Dict* dict) {
         strcpy(item->value, value);
         dict->firstItem = item;
     }
+    dict->length++;
     return item;
 }
 
 bool removeItem(char key[], Dict* dict) {
+    Item* previousItem = dict->firstItem;
+
+    // first Item is Item that should be deleted
+    if (strcmp(previousItem->key, key) == 0){
+        // point to the next item and delete the prev item
+        dict->firstItem = previousItem->next;
+        free(previousItem);
+        dict->length--;
+        return true;
+    }
+
+    // currentItem is one step further than previousItem
+    Item* currentItem = dict->firstItem;
+    currentItem = currentItem->next;
+    while (currentItem != NULL) {
+        if (strcmp(currentItem->key, key) == 0){
+            previousItem->next = currentItem->next;
+            free(currentItem);
+            dict->length--;
+            return true;
+        }
+
+        currentItem = currentItem->next;
+        previousItem = previousItem->next;
+    }
     return false;
 }
 

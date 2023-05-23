@@ -74,7 +74,7 @@ void dictAdd(char key[], char value[], Dict* dict) {
 
     Item* item = addItem(key, value, dict);
     if (item == NULL) {
-        printf("Key already taken. Item is not added.\n");
+        printf("Key already taken. Item not added.\n");
     }
     // printf("\n");
     // printf("key:%s\n", item->key);
@@ -87,15 +87,16 @@ void process_dict() {
     printf("2 - remove\n");
     printf("3 - get\n");
     printf("4 - show\n");
+    printf("5 - get length\n");
 
     Dict* dict = malloc(sizeof(Dict));
     char option;
+    char key[20];                
+    char value[250];
     while (1) {
         scanf("%c", &option);
         switch(option) {
             case '1':
-                char key[20];                
-                char value[250];
                 printf("key:");
                 scanf("%s", &key);
                 printf("value:");
@@ -103,11 +104,19 @@ void process_dict() {
                 dictAdd(key, value, dict);
                 break;
             case '2':
-                break;
+                printf("key:");
+                scanf("%s", &key);
+                bool success = removeItem(key, dict);
+                if (!success){
+                    printf("Error. Can not remove Item\n");
+                }
             case '3':
                 break;
             case '4':
                 showAllItems(dict);
+                break;
+            case '5':
+                printf("length: %d\n", dict->length);
                 break;
         }
     }
