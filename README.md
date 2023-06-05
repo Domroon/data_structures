@@ -12,3 +12,7 @@ Data Structures for the C Programming Language
  running tests
  
      make test
+
+cleaning build environment
+
+    make clean
