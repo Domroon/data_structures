@@ -1,6 +1,11 @@
 # data_structures
 Data Structures for the C Programming Language
 
+###
+currently implemented:
+- linked lists
+- dict
+
  compiling
  
      make
